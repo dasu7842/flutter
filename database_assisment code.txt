@@ -1,0 +1,75 @@
+CREATE TABLE Bank (
+    branch_id INT PRIMARY KEY,
+    branch_name VARCHAR(50),
+    branch_city VARCHAR(50)
+);
+
+CREATE TABLE AccountHolder (
+    account_holder_id INT PRIMARY KEY,
+    account_no INT,
+    account_holder_name VARCHAR(50),
+    city VARCHAR(50),
+    contact VARCHAR(20),
+    date_created DATE,
+    account_status VARCHAR(10),
+    account_type VARCHAR(20),
+    balance DECIMAL(10, 2)
+);
+
+CREATE TABLE Loan (
+    loan_no INT PRIMARY KEY,
+    branch_id INT,
+    account_holder_id INT,
+    loan_amount DECIMAL(10, 2),
+    loan_type VARCHAR(20),
+    FOREIGN KEY (branch_id) REFERENCES Bank(branch_id),
+    FOREIGN KEY (account_holder_id) REFERENCES AccountHolder(account_holder_id)
+);
+->Intra-Bank Transfer Transaction
+-- Assuming account A has account_no = 123 and account B has account_no = 456
+
+-- Begin Transaction
+BEGIN;
+
+-- Debit from Account A
+UPDATE AccountHolder
+SET balance = balance - 100
+WHERE account_no = 123;
+
+-- Credit to Account B
+UPDATE AccountHolder
+SET balance = balance + 100
+WHERE account_no = 456;
+
+-- Commit Transaction
+COMMIT;
+
+->Fetch Account Holders from the Same City:
+SELECT *
+FROM AccountHolder
+WHERE city IN (
+    SELECT city
+    FROM AccountHolder
+    GROUP BY city
+    HAVING COUNT(*) > 1
+);
+
+->Fetch Account Number and Holder Name for Accounts Created After 15th of Any Month:
+
+SELECT account_no, account_holder_name
+FROM AccountHolder
+WHERE DAY(date_created) > 15;
+
+->Display City Name and Count of Branches with Alias:
+
+SELECT branch_city, COUNT(*) AS Count_Branch
+FROM Bank
+GROUP BY branch_city;
+
+->Display Account Holder's ID, Name, Branch ID, and Loan Amount for People with Loans (Using SQL JOIN):
+
+SELECT AH.account_holder_id, AH.account_holder_name, L.branch_id, L.loan_amount
+FROM AccountHolder AH
+JOIN Loan L ON AH.account_holder_id = L.account_holder_id;
+
+
