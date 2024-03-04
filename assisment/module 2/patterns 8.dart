@@ -18,7 +18,7 @@ void main()
       stdout.write(" ");
     }
 
-    // Print numbers
+    // Print number
     for (int k = 1; k <= i; k++)
     {
       stdout.write("$i ");
