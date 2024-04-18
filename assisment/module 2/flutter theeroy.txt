@@ -1,5 +1,5 @@
 21. What is inheritance?
-Ans->A property of the parent class is accessed from the child class.
+Ans->A property of the parent class is Accessed from the child class.
 
 22. Which inheritance is not supported by Dart? Why? B3. What is 
 advantage of inheritance?
@@ -14,10 +14,10 @@ Ans->Inheritance is when a 'class' derives from an existing 'class'.
    ->Polymorphism deals with how the program decides which methods it should use. 
 
 25. Can we override static method in Dart?
-Ans-> No that is not possible.
+Ans-> No that is not Possible.
 
 26. Can we overload static method in Dart?
-Ans->No that is not possible.
+Ans->No that is not Possible.
 
 27. Can a class implement more than one interface? 
 Ans->Yes, in Dart a class can implement more than one interface. Dart supports multiple interface inheritance.
