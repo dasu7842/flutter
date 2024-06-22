@@ -57,7 +57,7 @@ class _SignupState extends State<SignupScreen> {
         [
           SingleChildScrollView
             (
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(18.0),
             child: Form(
               key: _formKey,
               child: Column(
